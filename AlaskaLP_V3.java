@@ -32,10 +32,6 @@ public class AlaskaLP_V3 {
       String[] bases =  {};
       Set<String> heliBases = new HashSet<String>();
       
-      
-      
-      
-      
       // (3) Potential flight segments, n \in N
       // (4) Flight segments that contain plot i, P_i
       // (5) Plots in a flight segment n, S_n
@@ -89,7 +85,7 @@ public class AlaskaLP_V3 {
          String line = input.nextLine();
          String lineParts[] = line.split(",");
          // filled with 1st keyword values (E.g. values in "Heterogen" column)
-         hetero_i.add(lineParts[headingIndex.get("Heterogen")]); // first index tracked = hetero
+         hetero_i.add(lineParts[headingIndex.get("Heterogen")]); 
          
          // filled with 2nd and 3rd keyword values (E.g. values in HeliBase & HeliDist) 
          c_im.add(lineParts[headingIndex.get("HeliBase")] + " " + lineParts[headingIndex.get("HeliDist")]);
@@ -98,16 +94,6 @@ public class AlaskaLP_V3 {
          // PrintStream output = new PrintStream(new File("GIS_data/heterogeneity.txt"));
          // output.println(lineParts[headingIndex.get("Heterogen")]); 
       }
-      
-      /*
-      // OPTIONAL:
-      // find index of single key heading (if exists)
-      int keyIndex = findKeyIndex(keyHeading, input);
-      if (keyIndex == -1) {
-            throw new IllegalArgumentException("Keyword \"" + keyHeading + "\" is not found.");
-      }
-      */  
-      
    }
    
    // find the key index of desired data column
@@ -166,7 +152,6 @@ public class AlaskaLP_V3 {
       String[] colNames = line.split(",");
       for (int i = 0; i < colNames.length; i++) {
          String next = colNames[i];
-         //System.out.println(next);
          for (int j = 0; j < heading.length; j++){
             if (next.equals(heading[j])) {
                headIndex[j] = i;
