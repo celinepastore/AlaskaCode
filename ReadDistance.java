@@ -15,7 +15,8 @@ import java.util.*;
 public class ReadDistance {
    public static void main(String[] args) throws FileNotFoundException {
       Scanner fileReader = new Scanner (new File ("GIS_data/distance_output.txt"));
-      ArrayList<String> dist_ij = new ArrayList<String>();
+      //ArrayList<String> dist_ij = new ArrayList<String>();
+      Map<Set<String>, String> pairDist = new HashMap<Set<String>, String>(); // pairwise distance between all i,j in I
       
       // read headings
       int numLines = 0;
@@ -24,8 +25,9 @@ public class ReadDistance {
       
       // count number of lines in file      
       while (fileReader.hasNextLine()) {
+         Set<String> pair = new HashSet<String>();
          line = fileReader.nextLine();
-         String lineParts[] = line.split(",");
+         String[] lineParts = line.split(",");
          // [1] = INPUT_FID
          // [2] = NEAR_FID
          // [3] = DISTANCE
@@ -33,6 +35,9 @@ public class ReadDistance {
             System.out.println("Duplicates [0,34] and [34,0] are present");   
          }
          numLines++;
+         pair.add(lineParts[1]);
+         pair.add(lineParts[2]);
+         pairDist.put(pair, lineParts[3]);
          
          
       }
